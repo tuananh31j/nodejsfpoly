@@ -2,10 +2,28 @@
   "name": "nodejs-ecom",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "start": "nodemon --inspect src/index.js --exec babel-node -e js",
+    "style": "node-sass -i src/resources/scss -o src/public/css -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "node-sass": "^9.0.0",
+    "sweetalert": "^2.1.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
+  }
 }
