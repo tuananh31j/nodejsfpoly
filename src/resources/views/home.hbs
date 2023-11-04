@@ -1,1 +1,8 @@
-<h1>Home</h1>
+<div>
+    {{#each products}}
+    <div>
+        <h1>{{this.name}}</h1>
+        <p>{{this.price}}</p>
+    </div>
+    {{/each}}
+</div>
