@@ -16,7 +16,10 @@ const Product = new Schema({
         type: String
     },
     slug: { type: String, slug: 'name', unique: true }
-})
+},
+    { timestamps: true }
+
+)
 
 
 export default mongoose.model('Product', Product);
