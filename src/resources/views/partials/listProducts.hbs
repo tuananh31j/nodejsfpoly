@@ -1,0 +1,9 @@
+<div class="grid grid-cols-4 gap-5 text-center">
+        {{#each products as |details|}}
+            {{#>card}}
+            {{details.name}}
+            
+            {{/card}}
+        {{/each}}
+    </div>
+</div>

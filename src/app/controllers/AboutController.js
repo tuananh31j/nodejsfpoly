@@ -1,6 +1,6 @@
 class AboutController {
     index(rep, res) {
-        res.render('tt')
+        res.render('about')
     }
 
 }
