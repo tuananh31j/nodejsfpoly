@@ -1,5 +1,5 @@
-import Product from "../../models/product";
-import { multipleMongooseToObject } from "../../utilities/mongoose";
+const Product = require('../../models/product');
+const {multipleMongooseToObject} = require('../../utilities/mongoose')
 
 class SiteController {
     index(rep, res, next) {
@@ -30,4 +30,4 @@ class SiteController {
     }
 }
 
-export default new SiteController;
+module.exports = new SiteController;

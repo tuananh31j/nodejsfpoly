@@ -5,4 +5,4 @@ class LoginController {
 
 }
 
-export default new LoginController;
+module.exports =  new LoginController;

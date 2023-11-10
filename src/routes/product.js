@@ -1,10 +1,10 @@
-import productController from "../app/controllers/ProductController"
-import express from "express";
+const express = require('express');
+const productController = require('../app/controllers/ProductController');
 
 
 const router = express.Router();
 
 router.use('/:slug', productController.show)
 
-export default router;
+module.exports = router;
 

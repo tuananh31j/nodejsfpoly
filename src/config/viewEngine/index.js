@@ -1,15 +1,16 @@
-import express from 'express';
-import { engine } from 'express-handlebars';
-import path from "path";
+
+const path = require('path');
+const hbs = require('express-handlebars');
+const express = require('express');
 
 
 const configViewEngne = (app) => {
     app.use(express.static(path.join('./src', 'public')))
-    app.engine('.hbs', engine({
+    app.engine('.hbs', hbs.engine({
     extname: '.hbs'
     }));
     app.set('view engine', '.hbs');
     app.set('views', path.join('./src', "resources/views"));
     }
 
-export default configViewEngne;
+module.exports = configViewEngne;

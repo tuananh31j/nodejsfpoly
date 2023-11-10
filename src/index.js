@@ -1,9 +1,10 @@
-import morgan from "morgan";
-import express from 'express';
-import route from "./routes";
-import db from "./config/db";
-import 'dotenv/config';
-import configViewEngne from "./config/viewEngine";
+
+const morgan = require('morgan');
+const express = require('express');
+require('dotenv').config();
+const configViewEngne = require('./config/viewEngine');
+const db = require('./config/db');
+const route = require('./routes');
 
 const app = express();
 const part = process.env.PORT || 8080;

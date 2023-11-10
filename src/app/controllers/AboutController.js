@@ -5,4 +5,4 @@ class AboutController {
 
 }
 
-export default new AboutController;
+module.exports =  new AboutController;

@@ -1,7 +1,8 @@
-import siteRouter from "./site";
-import productRouter from "./product";
-import aboutRouter from './about';
-import loginRouter from './login'
+
+const siteRouter = require('./site');
+const productRouter = require('./product');
+const aboutRouter = require('./about');
+const loginRouter = require('./login');
 
 const route = (app) => {
     app.use('/product', productRouter);
@@ -13,4 +14,4 @@ const route = (app) => {
 }
 
 
-export default route;
+module.exports = route;
