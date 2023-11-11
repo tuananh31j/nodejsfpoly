@@ -4,7 +4,8 @@ const express = require('express');
 require('dotenv').config();
 const configViewEngne = require('./config/viewEngine');
 const db = require('./config/db');
-const route = require('./routes');
+const routeWeb = require('./routes/web');
+const routesApi = require('./routes/api')
 
 const app = express();
 const part = process.env.PORT || 8080;
@@ -23,9 +24,11 @@ app.use(express.urlencoded({
 // config view engine
 configViewEngne(app)
 
-// call route
-route(app);
+// route web server side
+routeWeb(app);
 
+// router api client side
+app.use('/api', () => routesApi(app))
 
 // start server
 app.listen(part,hostName, () => console.log(`http://localhost:${part}`));
