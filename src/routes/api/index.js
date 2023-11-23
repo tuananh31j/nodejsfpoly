@@ -7,10 +7,10 @@ const express = require('express')
 const router = express.Router();
 const middlewareCheckToken = require('../../app/middlewares/CheckToken');
 
-router.use('/product',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerProduct);
-router.use('/banner',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerBanner);
-router.use('/category',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerCategory);
-router.use('/customer',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerCustomer);
+router.use('/products',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerProduct);
+router.use('/banners',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerBanner);
+router.use('/categorys',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerCategory);
+router.use('/customers',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerCustomer);
 router.use('/auth', routerAuth);
 
 module.exports = router;

@@ -3,8 +3,9 @@ class ProductController {
     getAll(rep, res, next) {
         const page = rep.query._page || 1;
         const limit = rep.query._limit || 0;
+        const cate = rep.query.category_id ? {category_id: rep.query.category_id}: {};
         
-        Product.find({})
+        Product.find(cate)
         .skip(page - 1 * limit)
         .limit(limit)
         .then(data => res.json(data))
