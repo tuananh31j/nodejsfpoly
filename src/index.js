@@ -5,13 +5,17 @@ require('dotenv').config();
 const configViewEngne = require('./config/viewEngine');
 const db = require('./config/db');
 const routeWeb = require('./routes/web');
-const routesApi = require('./routes/api')
+const routesApi = require('./routes/api');
+const cors = require('cors');
 
 const app = express();
-const part = process.env.PORT || 8080;
-const hostName = process.env.HOST_NAME
+const PORT = process.env.PORT || 8080;
+const HOST_NAME = process.env.HOST_NAME
 // connect mongodb
 db.connect();
+
+app.use(express.json());
+app.use(cors());
 
 // console log rep
 // app.use(morgan("combined"))
@@ -28,7 +32,7 @@ configViewEngne(app)
 routeWeb(app);
 
 // router api client side
-app.use('/api', () => routesApi(app))
+app.use('/api', routesApi)
 
 // start server
-app.listen(part,hostName, () => console.log(`http://localhost:${part}`));
+app.listen(PORT, HOST_NAME, () => console.log(`http://${HOST_NAME}:${PORT}`));

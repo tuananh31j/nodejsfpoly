@@ -12,20 +12,27 @@ const Product = new Schema({
     price: {
         type: Number
     },
-    discount: {
+    sale: {
         type: Number,
         min: 0,
         max: 100,
         default: 0
     },
     des: {
-        maxLength: 255,
+        maxLength: 555,
         type: String
+    },
+    view: {
+        type: Number,
+        default: 0
     },
     img: {
         type: String
     },
-    slug: { type: String, slug: 'name', unique: true }
+    category_id: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Category'
+    }
 },
     { timestamps: true }
 
