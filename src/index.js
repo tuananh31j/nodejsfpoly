@@ -35,4 +35,4 @@ routeWeb(app);
 app.use('/api', routesApi)
 
 // start server
-app.listen(PORT, HOST_NAME, () => console.log(`http://${HOST_NAME}:${PORT}`));
+app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
