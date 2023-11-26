@@ -17,7 +17,7 @@ router.use('/auth', routerAuth);
 
 router.use('/products', routerProduct);
 router.use('/banners', routerBanner);
-router.use('/categorys', routerCategory);
+router.use('/categories', routerCategory);
 router.use('/customers', routerCustomer);
 
 module.exports = router;
