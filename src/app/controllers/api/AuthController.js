@@ -1,11 +1,18 @@
 const Customer = require('../../../models/Customer');
 const bcrypt = require('bcrypt');
+const isValidateUser = require('../../../validations/Customer');
+const isValidateLogin = require('../../../validations/Auth');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 class AuthController{
     async login(rep, res, next) {
         const email = rep.body.email;
+        const {error} = isValidateLogin.validate(rep.body, {abortEarly:false})
+        if(error) {
+            const err = error.details.reduce((errors, curErr) => [...errors, curErr.message], []);
+            return res.status(400).json({message: 'Có lỗi!', errors: err});
+        }
         const user = await Customer.findOne({email})
 
         if(!user) return res.status(400).json({message: 'Email không tồn tại!'})
@@ -33,6 +40,11 @@ class AuthController{
 
     async registor(rep, res) {
         try {
+            const  {error} = isValidateUser.validate(rep.body, {abortEarly:false})
+            if(error) {
+                const err = error.details.reduce((errors, curErr) => [...errors, curErr.message], []);
+                return res.status(400).json({message: 'Có lỗi!', errors: err});
+            }
             const email = rep.body.email;
             const phone = rep.body.phone;
             const password = rep.body.password;
@@ -43,7 +55,7 @@ class AuthController{
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(password, salt);
 
-            const newUser = await new Customer({email, phone, name, hashed})
+            const newUser = await new Customer({email, phone, name, password:hashed})
 
             const user = await newUser.save()
             res.status(200).json({

@@ -3,7 +3,8 @@ require('dotenv').config();
 class CheckToken{
     verifyUser(rep,res,next){
         try {
-            const token = rep.headers.token;
+            const token = rep.headers.authorization?.split(' ')[1];
+            console.log(token);
             if(token) {
                 jwt.verify(token, process.env.JWT_ACCESS_KEY, (err, user) => {
                     if(err) return res.status(400).json({message:'Token không hợp lệ!'})

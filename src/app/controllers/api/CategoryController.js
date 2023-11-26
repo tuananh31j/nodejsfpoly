@@ -1,9 +1,15 @@
 const Category = require('../../../models/Category')
-
+const isValidationCate = require("../../../validations/Category")
 class CategoryController{
     async add(rep,res) {
         try {
             const name = rep.body.name;
+            const {error} = isValidationCate.validate(rep.body, {abortEarly:false})
+
+            if(error) {
+                const err = error.details.reduce((errors, curErr) => [...errors, curErr.message], []);
+                return res.status(400).json({message: 'Có lỗi!', errors: err});
+            }
             const newCategory = await new Category({name});
             const category = await newCategory.save();
             res.status(200).json({

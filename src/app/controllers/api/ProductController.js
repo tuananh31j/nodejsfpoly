@@ -1,4 +1,5 @@
 const Product = require('../../../models/Product')
+const isValidationPro = require('../../../validations/Product')
 class ProductController {
     getAll(rep, res, next) {
         const page = rep.query._page || 1;
@@ -6,7 +7,7 @@ class ProductController {
         const cate = rep.query.category_id ? {category_id: rep.query.category_id}: {};
         
         Product.find(cate)
-        .skip(page - 1 * limit)
+        .skip((page - 1) * limit)
         .limit(limit)
         .then(data => res.json(data))
         .catch(next)
@@ -16,14 +17,22 @@ class ProductController {
         const id = rep.params.id;
         Product.findById(id)
         .exec()
-        .then(data => res.json(data)) 
+        .then(data => {
+            if(data) return res.json(data);
+            return res.status(400).json({
+                message: "Không tồn tại!"
+            })
+         }) 
         .catch(next)      
     }
 
     create(rep, res, next) {
-        const data = rep.body;
+        try {
+            const data = rep.body;
+        const {error} = isValidationPro.validate(data, {abortEarly:false});
 
-        if(data) {
+
+        if(data && !error) {
             Product.create(rep.body)
             .then(data => res.json({
                 message: "Thêm thành công!",
@@ -31,9 +40,14 @@ class ProductController {
             }))
             .catch(next)
         }else{
+            const err =error.details.reduce((errs, initErr) => [...errs, initErr.message],[])
             res.status(400).json({
-                message: "Thêm mới không thành công!"
+                message: "Thêm mới không thành công!",
+                err
             })
+        }
+        } catch (error) {
+            res.status(500).json({message: "Lỗi"})
         }
     }
 

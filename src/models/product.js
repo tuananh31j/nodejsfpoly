@@ -6,11 +6,12 @@ const Schema = mongoose.Schema;
 
 const Product = new Schema({
     name: {
-        require: true,
+        required: true,
         type: String
     },
     price: {
-        type: Number
+        type: Number,
+        required: true
     },
     sale: {
         type: Number,
@@ -20,18 +21,21 @@ const Product = new Schema({
     },
     des: {
         maxLength: 555,
-        type: String
+        type: String,
+        required: true
     },
     view: {
         type: Number,
         default: 0
     },
     img: {
-        type: String
+        type: String,
+        required: true
     },
     category_id: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Category'
+        ref: 'Category',
+        required: true
     }
 },
     { timestamps: true }
