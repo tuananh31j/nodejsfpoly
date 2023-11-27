@@ -1,5 +1,4 @@
 
-const morgan = require('morgan');
 const express = require('express');
 require('dotenv').config();
 const configViewEngne = require('./config/viewEngine');
@@ -21,12 +20,15 @@ app.use(cors());
 // app.use(morgan("combined"))
 
 // midleware for form data
+app.use('/', (rep, res) => {
+    res.json({message: "hello"})
+})
 app.use(express.urlencoded({
     extended: true
 }))
 
 // config view engine
-configViewEngne(app)
+// configViewEngne(app)
 
 // route web server side
 routeWeb(app);
