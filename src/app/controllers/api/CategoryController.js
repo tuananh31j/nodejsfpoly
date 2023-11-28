@@ -7,7 +7,7 @@ class CategoryController{
             const {error} = isValidationCate.validate(rep.body, {abortEarly:false})
 
             if(error) {
-                const err = error.details.reduce((errors, curErr) => [...errors, curErr.message], []);
+                const err = error.details.map(item => item.message);
                 return res.status(400).json({message: 'Có lỗi!', errors: err});
             }
             const newCategory = await new Category({name});

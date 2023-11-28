@@ -10,7 +10,7 @@ class AuthController{
         const email = rep.body.email;
         const {error} = isValidateLogin.validate(rep.body, {abortEarly:false})
         if(error) {
-            const err = error.details.reduce((errors, curErr) => [...errors, curErr.message], []);
+            const err = error.details.map(item => item.message);
             return res.status(400).json({message: 'Có lỗi!', errors: err});
         }
         const user = await Customer.findOne({email})
@@ -42,7 +42,7 @@ class AuthController{
         try {
             const  {error} = isValidateUser.validate(rep.body, {abortEarly:false})
             if(error) {
-                const err = error.details.reduce((errors, curErr) => [...errors, curErr.message], []);
+                const err = error.details.map(item => item.message);
                 return res.status(400).json({message: 'Có lỗi!', errors: err});
             }
             const email = rep.body.email;

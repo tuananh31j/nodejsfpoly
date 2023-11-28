@@ -7,6 +7,7 @@ class ProductController {
         const cate = rep.query.category_id ? {category_id: rep.query.category_id}: {};
         
         Product.find(cate)
+        .populate('category_id')
         .skip((page - 1) * limit)
         .limit(limit)
         .then(data => res.json(data))
@@ -40,7 +41,7 @@ class ProductController {
             }))
             .catch(next)
         }else{
-            const err =error.details.reduce((errs, initErr) => [...errs, initErr.message],[])
+            const err = error.details.map(item => item.message);
             res.status(400).json({
                 message: "Thêm mới không thành công!",
                 err
