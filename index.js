@@ -1,10 +1,10 @@
 
 const express = require('express');
 require('dotenv').config();
-const configViewEngne = require('./config/viewEngine');
-const db = require('./config/db');
-const routeWeb = require('./routes/web');
-const routesApi = require('./routes/api');
+const configViewEngne = require('./src/config/viewEngine');
+const db = require('./src/config/db');
+const routeWeb = require('./src/routes/web');
+const routesApi = require('./src/routes/api');
 const cors = require('cors');
 
 const app = express();
