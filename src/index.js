@@ -27,7 +27,7 @@ app.use(express.urlencoded({
 }))
 
 // config view engine
-// configViewEngne(app)
+configViewEngne(app)
 
 // route web server side
 routeWeb(app);
