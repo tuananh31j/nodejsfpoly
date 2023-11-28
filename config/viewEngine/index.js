@@ -5,12 +5,12 @@ const express = require('express');
 
 
 const configViewEngne = (app) => {
-    app.use(express.static(path.join('./src', 'public')))
+    app.use(express.static(path.join('./', 'public')))
     app.engine('.hbs', hbs.engine({
     extname: '.hbs'
     }));
     app.set('view engine', '.hbs');
-    app.set('views', path.join('./src', "resources/views"));
+    app.set('views', path.join('./', "resources/views"));
     }
 
 module.exports = configViewEngne;
