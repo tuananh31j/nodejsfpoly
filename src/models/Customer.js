@@ -1,4 +1,4 @@
-const { truncateSync } = require('fs');
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 require('dotenv').config()
