@@ -11,10 +11,11 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const HOST_NAME = process.env.HOST_NAME
 // connect mongodb
+app.use(cors());
+
 db.connect();
 
 app.use(express.json());
-app.use(cors());
 
 // console log rep
 // app.use(morgan("combined"))
