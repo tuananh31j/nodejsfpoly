@@ -1,15 +1,13 @@
 
 const express = require('express');
 require('dotenv').config();
-const configViewEngne = require('./config/viewEngine');
 const db = require('./config/db');
-const routeWeb = require('./routes/web');
 const routesApi = require('./routes/api');
 const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const HOST_NAME = process.env.HOST_NAME
+// const HOST_NAME = process.env.HOST_NAME
 // connect mongodb
 app.use(cors());
 
@@ -27,10 +25,10 @@ app.use(express.urlencoded({
 }))
 
 // config view engine
-configViewEngne(app)
+// configViewEngne(app)
 
 // route web server side
-routeWeb(app);
+// routeWeb(app);
 
 // router api client side
 app.use('/api', routesApi)
