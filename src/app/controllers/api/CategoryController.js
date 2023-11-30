@@ -1,5 +1,5 @@
-const Category = require('../../../models/Category')
-const isValidationCate = require("../../../validations/Category")
+const Category = require('../../models/Category')
+const isValidationCate = require("../../validations/Category")
 class CategoryController{
     async add(rep,res) {
         try {
