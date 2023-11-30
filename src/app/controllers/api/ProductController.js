@@ -1,5 +1,5 @@
-const Product = require('../../../models/Product.js')
-const isValidationPro = require('../../../validations/Product')
+const Product = require('../../models/Product.js')
+const isValidationPro = require('../../validations/Product.js')
 class ProductController {
     getAll(rep, res, next) {
         const page = rep.query._page || 1;
