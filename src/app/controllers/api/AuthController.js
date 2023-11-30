@@ -1,7 +1,7 @@
-const Customer = require('../../../models/Customer');
+const Customer = require('../../models/Customer');
 const bcrypt = require('bcrypt');
-const isValidateUser = require('../../../validations/Customer');
-const isValidateLogin = require('../../../validations/Auth');
+const isValidateUser = require('../../validations/Customer');
+const isValidateLogin = require('../../validations/Auth');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
