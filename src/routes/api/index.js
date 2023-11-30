@@ -5,7 +5,7 @@ const routerCategory = require('./category');
 const routerAuth = require('./auth')
 const express = require('express')
 const router = express.Router();
-const middlewareCheckToken = require('../../app/middlewares/CheckToken');
+const middlewareCheckToken = require('../../middlewares/CheckToken');
 
 // router.use('/products',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerProduct);
 // router.use('/banners',middlewareCheckToken.verifyUser, middlewareCheckToken.verifyAdmin, routerBanner);
