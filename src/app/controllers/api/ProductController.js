@@ -1,4 +1,4 @@
-const Product = require('../../../../models/Product.js')
+const Product = require('../../../models/Product.js')
 const isValidationPro = require('../../../validations/Product')
 class ProductController {
     getAll(rep, res, next) {
