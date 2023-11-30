@@ -10,7 +10,7 @@ class ProductController {
         .populate('category_id')
         .skip((page - 1) * limit)
         .limit(limit)
-        .then(data => res.json(data))
+        .then(data => res.status(200).json(data))
         .catch(next)
     }
     
@@ -19,12 +19,12 @@ class ProductController {
         Product.findById(id)
         .exec()
         .then(data => {
-            if(data) return res.json(data);
+            if(data) return res.status(200).json(data);
             return res.status(400).json({
                 message: "Không tồn tại!"
             })
          }) 
-        .catch(next)      
+        .catch(err => res.status(500).json({message: "lỗi", err}))      
     }
 
     create(rep, res, next) {
@@ -35,7 +35,7 @@ class ProductController {
 
         if(data && !error) {
             Product.create(rep.body)
-            .then(data => res.json({
+            .then(data => res.status(200).json({
                 message: "Thêm thành công!",
                 data: data
             }))
@@ -56,7 +56,7 @@ class ProductController {
         try {
             const id = rep.params.id;
             const data = await Product.findByIdAndDelete(id)
-                res.json({
+                res.status(200).json({
                     message: 'Xoa thanh cong!',
                     data})
         } catch (err) {
@@ -68,12 +68,12 @@ class ProductController {
         try {
             const data = rep.body;
             const item = await Product.findByIdAndUpdate(rep.params.id,data)
-            res.json({
+            res.status(200).json({
                 message: "Cập nhật thành công!",
                 data
             })
         } catch (err) {
-            res.json(err)
+            res.status(500).json(err)
         }
     }
 }

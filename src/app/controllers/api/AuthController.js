@@ -45,22 +45,21 @@ class AuthController{
                 const err = error.details.map(item => item.message);
                 return res.status(400).json({message: 'Có lỗi!', errors: err});
             }
-            const email = rep.body.email;
-            const phone = rep.body.phone;
-            const password = rep.body.password;
-            const name = rep.body.name;
+            
+            const {email, phone, password: pass, name} = rep.body;
 
             const checkUser = await Customer.findOne({email, phone});
             if(checkUser) return res.status(400).json({message: "email hoặc số điện thoại đã tồn tại!"})
             const salt = await bcrypt.genSalt(10);
-            const hashed = await bcrypt.hash(password, salt);
+            const hashed = await bcrypt.hash(pass, salt);
 
             const newUser = await new Customer({email, phone, name, password:hashed})
 
-            const user = await newUser.save()
+            const user = await newUser.save();
+            const {password, ...orther} = user;
             res.status(200).json({
                 message: "Đăng ký thành công!",
-                data: user
+                data: orther
             })
             
         } catch (error) {

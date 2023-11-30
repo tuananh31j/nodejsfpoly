@@ -14,7 +14,7 @@ class CustomerController {
         const id = rep.params.id;
         Customer.findById(id)
         .exec()
-        .then(data => res.json(data))
+        .then(data => res.status(200).json(data))
         .catch(() => res.status(500).json({message: 'Lỗi'}))
     }
 
@@ -57,9 +57,9 @@ class CustomerController {
         try {
             const id = rep.params.id;
             Customer.findOneAndDelete(id)
-            .then(data => res.json({
+            .then(data => res.status(200).json({
                 message:"Xoa thanh cong!",
-                data
+                
             }))
         } catch (error) {
             res.status(500).json({error})

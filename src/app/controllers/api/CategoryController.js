@@ -14,7 +14,7 @@ class CategoryController{
             const category = await newCategory.save();
             res.status(200).json({
                 message:'Thêm mới thành công!',
-                category
+                data: category
             }) 
             
         } catch (error) {
