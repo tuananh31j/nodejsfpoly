@@ -67,7 +67,8 @@ class ProductController {
     async update(rep, res, next) {
         try {
             const data = rep.body;
-            const item = await Product.findByIdAndUpdate(rep.params.id,data)
+            const item = await Product.findByIdAndUpdate(rep.params.id,data);
+            if(!item) return res.status(400).json({message: "Không tìm thấy sản phẩm!"})
             res.status(200).json({
                 message: "Cập nhật thành công!",
                 data
