@@ -50,8 +50,8 @@ class AuthController{
 
             const checkUserEmail = await Customer.findOne({email});
             const checkUserPhone = await Customer.findOne({phone});
-            if(checkUserEmail) return res.status(400).json({message: "Email đã tồn tại!"})
-            if(checkUserPhone) return res.status(400).json({message: "Phone đã tồn tại!"})
+            if(checkUserEmail) return res.status(400).json({message: {email: "Email đã tồn tại!", phone:''}})
+            if(checkUserPhone) return res.status(400).json({message:{email: '', phone:  "Phone đã tồn tại!"}})
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(pass, salt);
 
