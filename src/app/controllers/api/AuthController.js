@@ -38,7 +38,7 @@ class AuthController{
         }
     }
 
-    async registor(rep, res) {
+    async register(rep, res) {
         try {
             const  {error} = isValidateUser.validate(rep.body, {abortEarly:false})
             if(error) {
@@ -48,8 +48,9 @@ class AuthController{
             
             const {email, phone, password: pass, name} = rep.body;
 
-            const checkUser = await Customer.findOne({email, phone});
-            if(checkUser) return res.status(400).json({message: "email hoặc số điện thoại đã tồn tại!"})
+            const checkUserEmail = await Customer.findOne({email});
+            const checkUserPhone = await Customer.findOne({phone});
+            if(checkUserEmail,checkUserPhone) return res.status(400).json({message: "email hoặc số điện thoại đã tồn tại!"})
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(pass, salt);
 
