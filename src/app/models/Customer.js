@@ -6,7 +6,6 @@ require('dotenv').config()
 const Customer = new Schema({
     name: {
         type: String,
-        required: true,
     },
     email: {
         type: String,
@@ -15,8 +14,6 @@ const Customer = new Schema({
     },
     phone: {
         type: String,
-        required: true,
-        unique: true,
     },
     img: {
         type: String,
