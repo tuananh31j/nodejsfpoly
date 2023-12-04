@@ -34,7 +34,6 @@ const Product = new Schema({
     category_id: {
         type: mongoose.Schema.ObjectId,
         ref: 'Category',
-        required: true
     }
 },
     { timestamps: true }
